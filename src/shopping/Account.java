@@ -10,7 +10,7 @@ public class Account {
     private Date open;
     private Date closed;
     private int balance;
-    //private ShoppingCart shoppingCart;
+    private ShoppingCart shoppingCart;
     //private ArrayList<Order> orders;
     //private ArrayList<Payment> payments;
 
@@ -21,7 +21,7 @@ public class Account {
         this.open = new Date();
         this.closed = null;
         this.balance = 0;
-        //this.shoppingCart = new ShoppingCart(this.open);
+//        this.shoppingCart = new ShoppingCart(this.open);
         //this.orders = new ArrayList<>();
         //this.payments = new ArrayList<>();
     }
