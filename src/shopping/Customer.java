@@ -1,9 +1,5 @@
 package shopping;
 
-import com.sun.jndi.cosnaming.IiopUrl;
-
-import javax.jws.soap.SOAPBinding;
-
 public class Customer {
 
     private String name;
