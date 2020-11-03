@@ -13,7 +13,7 @@ public class Order {
     private OrderStatus status;
     private float total;
     private Account account;
-    private ArrayList<LineItem> lineItems;
+    //private ArrayList<LineItem> lineItems;
     private ArrayList<Payment> payments;
 
     public Order(String number, Date ordered, Date shipped, Address ship_to, OrderStatus status, float total, Account account) {
@@ -24,7 +24,7 @@ public class Order {
         this.status = status;
         this.total = total;
         this.account = account;
-        lineItems = new ArrayList<LineItem>();
+        //lineItems = new ArrayList<LineItem>();
         payments = new ArrayList<Payment>();
     }
 
@@ -84,7 +84,7 @@ public class Order {
         this.account = account;
     }
 
-    public HashMap<LineItem, Integer> getLineIteams() {
+    /*public HashMap<LineItem, Integer> getLineIteams() {
         return lineIteams;
     }
 
@@ -100,7 +100,7 @@ public class Order {
     public void removeItem(LineItem lineItem){
         if (lineItems.contains(lineItem))
             lineItems.remove(lineItem);
-    }
+    }*/
 
     public void addPayment(Payment payment){
         if (!payments.contains(payment))
@@ -112,13 +112,13 @@ public class Order {
             payments.remove(payment);
     }
 
-    public ArrayList<LineItem> getLineItems() {
+   /* public ArrayList<LineItem> getLineItems() {
         return lineItems;
     }
 
     public void setLineItems(ArrayList<LineItem> lineItems) {
         this.lineItems = lineItems;
-    }
+    }*/
 
     public ArrayList<Payment> getPayments() {
         return payments;
