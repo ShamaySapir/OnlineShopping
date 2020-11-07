@@ -1,6 +1,5 @@
 package shopping;
 
-import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -83,33 +82,56 @@ public class Main {
                     break;
 
                 case "Login WebUser":
-                    Boolean check = false;
+                    Boolean connected = false;
+                    String loginId = listChoose[2];
+                  //  String loginIdActive = shoppingSystem.getActiveUser();
 
-                    while (!check){
-
-                        String removeId=listChoose[2];
-                        System.out.println("Enter Password");
-                        String password = myObj.nextLine();
-                     //   check = shoppingSystem.verifyLogin(removeId,password);
+                  /*  if(loginIdActive==""){
+                        while (!connected){
+                            System.out.println("Enter Password");
+                            String password = myObj.nextLine();
+                        //    connected = shoppingSystem.verifyLogin(loginId,password);
+                        }
                     }
+                    else if(loginIdActive == loginId){
+                        System.out.println("You are already login");
+                    }
+                    else {
+                        System.out.println("wait for"+ loginIdActive+"to log off");
+                    }*/
+
                     break;
 
                 case "Logout WebUser":
-                    String logOutId = listChoose[2];
-                   //shoppingSystem.logOut(logOutId);
+                   /* String logOutId = listChoose[2];
+                    String loginIdActiveNow = shoppingSystem.getActiveUser();
+
+                    if( loginIdActiveNow == logOutId){
+                     //   shoppingSystem.logOut(logOutId);
+                        System.out.println("Bye bye...");
+                      }
+                    else if(loginIdActiveNow == ""){
+                        System.out.println("No one's login");
+                    }
+                    else {
+                        System.out.println("you are wrong in userId");
+                    }*/
                     break;
 
                 case "Make order":
+                    shoppingSystem.updateShoppingCartDate();
+
                     System.out.println("Enter Seller Name");
-                    String nameseller =myObj.nextLine();
+                    String nameseller = myObj.nextLine();
                    // List<Product> listProduct = shoppingSystem.showSellerProduct(nameseller);
 
                    /* for (int i=0; i <listProduct.size() ;i++){
                         Product product = listProduct.get(i);
-                        System.out.println(product.getName());
+                        System.out.println(product);
                     }*/
 
                     Boolean flagProudct=false;
+
                     while (!flagProudct){
                         System.out.println("please choose a product:");
                         String product =myObj.nextLine();
@@ -130,11 +152,23 @@ public class Main {
                         if (nextItem == "N")
                             flagProudct=true;
                     }
+                    Boolean isDelayed = false;
+                    System.out.println("enter one of the following:\n" +
+                            "DelayedPayment or ImmediatePayment ");
+                    String pay = myObj.nextLine();
+                    if(pay == "DelayedPayment" )
+                        isDelayed=true;
+                    System.out.println("How many payments would you like?");
+                    String numPay = myObj.nextLine();
+                    int numOfPayments = Integer.parseInt(numPay);
+
+                    shoppingSystem.makeOrder(isDelayed, numOfPayments);
+
 
                     break;
 
                 case "Display order":
-                 //   sys.getLastOrder();
+                 //   shoppingSystem.getLastOrder();
                     break;
 
                 case "Link Product":
