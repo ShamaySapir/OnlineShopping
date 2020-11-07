@@ -10,20 +10,15 @@ public class Product {
     private Supplier supplier;
     private PremiumAccount seller;
     private List<LineItem> lineItems;
+    private int price;
+    private int inStock;
+    private int object_id;
 
-    public Product(String id, String name, Supplier supplier) {
+    public Product(String id, String name,int object_id) {
         this.id = id;
         this.name = name;
-        this.supplier = supplier;
         this.lineItems = new ArrayList<>();
-    }
-
-    public Product(String id, String name, Supplier supplier, PremiumAccount seller) {
-        this.id = id;
-        this.name = name;
-        this.supplier = supplier;
-        this.seller = seller;
-        this.lineItems = new ArrayList<>();
+        this.object_id = object_id;
     }
 
     public String getId() {
@@ -53,7 +48,60 @@ public class Product {
         }
     }
 
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public int getInStock() {
+        return inStock;
+    }
+
+    public void setInStock(int inStock) {
+        this.inStock = inStock;
+    }
+
     public void setSeller(PremiumAccount seller) {
         this.seller = seller;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSupplier(Supplier supplier) {
+        this.supplier = supplier;
+    }
+
+    public void setLineItems(List<LineItem> lineItems) {
+        this.lineItems = lineItems;
+    }
+
+    public int getObject_id() {
+        return object_id;
+    }
+
+    public void setObject_id(int object_id) {
+        this.object_id = object_id;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", supplier=" + supplier +
+                ", seller=" + seller +
+                ", lineItems=" + lineItems +
+                ", price=" + price +
+                ", inStock=" + inStock +
+                '}';
     }
 }
