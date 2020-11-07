@@ -9,7 +9,7 @@ public class LineItem {
     private Order order;
     private int object_id;
 
-    public LineItem(int quantity, int object_id) {
+    public LineItem(int object_id, int quantity) {
         this.quantity = quantity;
         this.object_id = object_id;
     }
@@ -60,11 +60,11 @@ public class LineItem {
         this.shoppingCart = shoppingCart;
     }
 
-    public int getObject_id() {
+    public int getObjectId() {
         return object_id;
     }
 
-    public void setObject_id(int object_id) {
+    public void setObjectId(int object_id) {
         this.object_id = object_id;
     }
 

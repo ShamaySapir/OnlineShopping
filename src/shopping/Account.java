@@ -17,7 +17,7 @@ public class Account {
     protected Customer customer;
     protected int object_id;
 
-    public Account(String accountId, String billingAddress,int balance, int object_id) {
+    public Account(int object_id, String accountId, String billingAddress,int balance) {
         this.accountId = accountId;
         this.billingAddress = billingAddress;
         this.isClosed = false;
@@ -107,11 +107,11 @@ public class Account {
         this.shoppingCart = shoppingCart;
     }
 
-    public int getObject_id() {
+    public int getObjectId() {
         return object_id;
     }
 
-    public void setObject_id(int object_id) {
+    public void setObjectId(int object_id) {
         this.object_id = object_id;
     }
 

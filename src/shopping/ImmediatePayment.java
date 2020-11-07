@@ -6,7 +6,7 @@ public class ImmediatePayment extends Payment{
 
     private boolean phoneConfirmation;
 
-    public ImmediatePayment(String id, Date paid, float total, String details, int object_id ,boolean phoneConfirmation) {
+    public ImmediatePayment(int object_id, String id, Date paid, float total, String details, boolean phoneConfirmation) {
         super(id, paid, total, details,object_id);
         this.phoneConfirmation = phoneConfirmation;
     }

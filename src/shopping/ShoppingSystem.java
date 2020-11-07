@@ -8,11 +8,13 @@ import java.util.List;
 public class ShoppingSystem {
 
     private HashMap<String, WebUser> webUsers; // String - (id) key
-    private HashMap<String, Object> objects; // key - object id
+    private HashMap<Integer, Object> objects; // key - object id
     private HashMap<String, Supplier> suppliers; // key - supplier id
     private HashMap<String, Product> products; // key - product id
 
     private static int objectId = 0;
+    private static int orderNumber = 0;
+    private static int paymentNumber = 0;
 
     private static WebUser activeWebUser;
 
@@ -39,16 +41,16 @@ public class ShoppingSystem {
      */
     public void addWebUser(String loginId,String password, String country, String city, int balance, String street,String phone,String email,String billingAddress, Boolean isPremiumAccount){
 
-        WebUser webUser = WebUser(loginId, password);
-        Customer customer = new Customer(String.valueOf(objectId++), loginId, country, city, street, phone, email);
+        WebUser webUser = new WebUser(objectId++, loginId, password);
+        Customer customer = new Customer(objectId++, loginId, country, city, street, phone, email);
 
         Account account;
         if(isPremiumAccount)
-            account = new PremiumAccount(String.valueOf(objectId++), billingAddress, balance);
+            account = new PremiumAccount(objectId++, loginId, billingAddress, balance);
         else
-            account = new Account(String.valueOf(objectId++), billingAddress, balance);
+            account = new Account(objectId++, loginId, billingAddress, balance);
 
-        ShoppingCart shoppingCart = new ShoppingCart(String.valueOf(objectId++), new Date());
+        ShoppingCart shoppingCart = new ShoppingCart(objectId++, new Date());
 
         shoppingCart.setAccount(account);
         account.setShoppingCart(shoppingCart);
@@ -67,22 +69,40 @@ public class ShoppingSystem {
 
     public void removeWebUser(String id){
 
+
+        for(Order order : activeWebUser.getCustomer().getAccount().getOrders()){
+
+            for (Payment payment : order.getPayments()){
+                objects.remove(payment.getObjectId());
+            }
+
+            for (LineItem lineItem : order.getLineItems()){
+                objects.remove(lineItem.getObjectId());
+                lineItem.getProduct().getLineItems().remove(lineItem);
+            }
+        }
+
+        for (Payment payment : activeWebUser.getCustomer().getAccount().getPayments()){
+            objects.remove(payment.getObjectId());
+        }
+
+
+        objects.remove(activeWebUser.getCustomer().getAccount().getShoppingCart().getObjectId());
+        objects.remove(activeWebUser.getCustomer().getAccount().getObjectId());
+        objects.remove(activeWebUser.getCustomer().getObjectId());
+        objects.remove(activeWebUser.getObjectId());
+        webUsers.remove(id);
+
         if (activeWebUser.getLoginId().equals(id)){
             activeWebUser = null;
         }
-
-        objects.remove(webUsers.getCustomer().getAccount().getShoppingCart().getObjectId());
-        objects.remove(webUsers.getCustomer().getAccount().getObjectId());
-        objects.remove(webUsers.getCustomer().getObjectId());
-        objects.remove(webUsers.getObjectId());
-        webUsers.remove(id);
     }
 
     public Boolean verifyLogin(String loginId, String password){
 
         if (webUsers.get(loginId).getPassword().equals(password)){
 
-            webUsers.get(loginId).setUserState(UserState.ACTIVE);
+            webUsers.get(loginId).setState(UserState.ACTIVE);
             activeWebUser = webUsers.get(loginId);
             return true;
         }
@@ -101,13 +121,13 @@ public class ShoppingSystem {
 
     public void logOut(String Id){
 
-        webUsers.get(Id).setUserState(UserState.NEW);
+        webUsers.get(Id).setState(UserState.NEW);
         activeWebUser = null;
     }
 
     public List<Product> showSellerProduct(String sellerId){
 
-        Account seller = webUsers.get(sellerId).getCostumer().getAccount();
+        Account seller = webUsers.get(sellerId).getCustomer().getAccount();
 
         if(seller instanceof PremiumAccount){
             return ((PremiumAccount) seller).getProducts();
@@ -118,7 +138,8 @@ public class ShoppingSystem {
 
     public void addToShoppingCart(Product product, int quantity){
 
-        LineItem lineItem = new LineItem(String.valueOf(objectId++), quantity, product);
+        LineItem lineItem = new LineItem(objectId++, quantity);
+
         lineItem.setShoppingCart(activeWebUser.getShoppingCart());
         activeWebUser.getShoppingCart().addLineItem(lineItem);
 
@@ -126,6 +147,11 @@ public class ShoppingSystem {
         lineItem.setProduct(product);
 
         objects.put(lineItem.getObjectId(), lineItem);
+    }
+
+    public void updateShoppingCartDate() {
+
+        activeWebUser.getShoppingCart().setCreated(new Date());
     }
 
 
@@ -137,7 +163,7 @@ public class ShoppingSystem {
 
     public void addProductToAccount(Product product, int quantity, int price){
 
-        Account seller = activeWebUser.getCostumer().getAccount();
+        Account seller = activeWebUser.getCustomer().getAccount();
 
         if(seller instanceof PremiumAccount)
             ((PremiumAccount) seller).addProduct(product, quantity, price);
@@ -147,14 +173,14 @@ public class ShoppingSystem {
 
         Supplier supplier;
         if (!suppliers.containsKey(supplierId)) {
-            supplier = new Supplier(String.valueOf(objectId++), supplierId, supplierName);
+            supplier = new Supplier(objectId++, supplierId, supplierName);
             suppliers.put(supplierId, supplier);
             objects.put(supplier.getObjectId(), supplier);
         }
         else
             supplier = suppliers.get(supplierId);
 
-        Product product = new Product(String.valueOf(objectId++), productId, productName);
+        Product product = new Product(objectId++, productId, productName);
 
         supplier.addProduct(product);
         product.setSupplier(supplier);
@@ -173,5 +199,44 @@ public class ShoppingSystem {
         for (Object object: objects.values()) {
             System.out.println(object.toString());
         }
+    }
+
+    public void makeOrder(Boolean isDelayed, int numOfPayments){
+
+        Order order = new Order(objectId++, String.valueOf(orderNumber++), new Date(), null, activeWebUser.getCustomer().getAddress(), 0);
+
+        float total = 0;
+        for(LineItem lineItem : activeWebUser.getShoppingCart().getLineItems()){
+
+            total += lineItem.getPrice();
+            order.addLineItem(lineItem);
+            lineItem.getProduct().setInStock(lineItem.getProduct().getInStock() - lineItem.getQuantity());
+        }
+
+        for(int i = 0; i < numOfPayments; i++) {
+
+            Payment payment;
+
+            if(isDelayed)
+                payment = new DelayedPayment(objectId++,String.valueOf(paymentNumber++), new Date(),total/numOfPayments, "delayed payment", new Date());
+            else
+                payment = new ImmediatePayment(objectId++,String.valueOf(paymentNumber++), new Date(),total/numOfPayments, "immediate payment", false);
+
+            order.addPayment(payment);
+            payment.setOrder(order);
+
+            activeWebUser.getCustomer().getAccount().addPayment(payment);
+            payment.setAccount(activeWebUser.getCustomer().getAccount());
+
+            objects.put(payment.getObjectId(), payment);
+        }
+
+        activeWebUser.getCustomer().getAccount().setBalance(activeWebUser.getCustomer().getAccount().getBalance() - (int)total);
+        activeWebUser.getCustomer().getAccount().addOrder(order);
+        order.setAccount(activeWebUser.getCustomer().getAccount());
+        objects.put(order.getObjectId(), order);
+
+        activeWebUser.getShoppingCart().getLineItems().clear();
+
     }
 }

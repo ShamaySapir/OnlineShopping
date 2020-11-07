@@ -9,7 +9,7 @@ public class Supplier {
     private ArrayList<Product> products;
     private int object_id;
 
-    public Supplier(String id, String name,int object_id) {
+    public Supplier(int object_id, String id, String name) {
         this.id = id;
         this.name = name;
         this. products = new ArrayList<Product>();
@@ -52,11 +52,11 @@ public class Supplier {
         this.products = products;
     }
 
-    public int getObject_id() {
+    public int getObjectId() {
         return object_id;
     }
 
-    public void setObject_id(int object_id) {
+    public void setObjectId(int object_id) {
         this.object_id = object_id;
     }
 }

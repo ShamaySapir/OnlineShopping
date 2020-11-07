@@ -10,11 +10,11 @@ public class Customer {
     private Account account;
     private int object_id;
 
-    public Customer(String name, String phone, String email, Address address,int object_id) {
+    public Customer(int object_id, String name, String phone, String email, String country, String city, String street) {
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.address = address;
+        this.address = new Address(street, city, country);
         this.object_id = object_id;
     }
 
@@ -66,11 +66,11 @@ public class Customer {
         this.account = account;
     }
 
-    public int getObject_id() {
+    public int getObjectId() {
         return object_id;
     }
 
-    public void setObject_id(int object_id) {
+    public void setObjectId(int object_id) {
         this.object_id = object_id;
     }
 
