@@ -1,28 +1,21 @@
 package shopping;
 
+import java.util.Date;
+
 public class WebUser {
-    private String loginId;
+    private String login_id;
     private String password;
     private UserState state;
     private Customer customer;
     private ShoppingCart shoppingCart;
+    private int object_id;
 
-    public WebUser(String name, String password, UserState state, Customer customer) {
+    public WebUser(String login_id, String password, int object_id) {
 
-        this.loginId = name;
+        this.login_id = login_id;
         this.password = password;
-        this.state = state;
-        this.customer = customer;
-        this.shoppingCart = null;
-
-    }
-    public WebUser(String name, String password, UserState state, Customer customer, ShoppingCart shoppingCart){
-
-        this.shoppingCart = shoppingCart;
-        this.loginId = name;
-        this.password = password;
-        this.state = state;
-        this.customer = customer;
+        this.state = UserState.NEW;
+        this.object_id = object_id;
     }
 
     public void addShoppingCart(ShoppingCart sc){
@@ -32,7 +25,59 @@ public class WebUser {
         }
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public UserState getState() {
+        return state;
+    }
+
+    public void setState(UserState state) {
+        this.state = state;
+    }
+
+    public String getLoginId() {
+        return login_id;
+    }
+
+    public void setLoginId(String login_id) {
+        this.login_id = login_id;
+    }
+
     public void deleteWebUser(){
         shoppingCart.deleteShoppingCart();
+    }
+
+    public ShoppingCart getShoppingCart() {
+        return shoppingCart;
+    }
+
+    public void setShoppingCart(ShoppingCart shoppingCart) {
+        this.shoppingCart = shoppingCart;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    @Override
+    public String toString() {
+        return "WebUser{" +
+                "login_id='" + login_id + '\'' +
+                ", password='" + password + '\'' +
+                ", state=" + state +
+                ", customer=" + customer +
+                ", shoppingCart=" + shoppingCart +
+                ", object_id=" + object_id +
+                '}';
     }
 }

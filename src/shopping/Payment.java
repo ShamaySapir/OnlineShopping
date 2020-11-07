@@ -6,15 +6,17 @@ public abstract class Payment  {
     protected String id;
     protected Date paid;
     protected float total;
-    protected String detalis;
+    protected String details;
     protected Order order;
+    protected Account account;
+    protected int object_id;
 
-    public Payment(String id, Date paid, float total, String detalis, Order order) {
+    public Payment(String id, Date paid, float total, String details,int object_id) {
         this.id = id;
         this.paid = paid;
         this.total = total;
-        this.detalis = detalis;
-        this.order = order;
+        this.details = details;
+        this.object_id = object_id;
     }
 
     public String getId() {
@@ -41,12 +43,12 @@ public abstract class Payment  {
         this.total = total;
     }
 
-    public String getDetalis() {
-        return detalis;
+    public String getDetails() {
+        return details;
     }
 
-    public void setDetalis(String detalis) {
-        this.detalis = detalis;
+    public void setDetails(String details) {
+        this.details = details;
     }
 
     public Order getOrder() {
@@ -55,5 +57,34 @@ public abstract class Payment  {
 
     public void setOrder(Order order) {
         this.order = order;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
+    public int getObject_id() {
+        return object_id;
+    }
+
+    public void setObject_id(int object_id) {
+        this.object_id = object_id;
+    }
+
+    @Override
+    public String toString() {
+        return "Payment{" +
+                "id='" + id + '\'' +
+                ", paid=" + paid +
+                ", total=" + total +
+                ", detalis='" + details + '\'' +
+                ", order=" + order +
+                ", account=" + account +
+                ", object_id=" + object_id +
+                '}';
     }
 }
