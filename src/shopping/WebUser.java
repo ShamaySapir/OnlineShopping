@@ -49,9 +49,9 @@ public class WebUser {
         this.login_id = login_id;
     }
 
-    public void deleteWebUser(){
+    /*public void deleteWebUser(){
         shoppingCart.deleteShoppingCart();
-    }
+    }*
 
     public ShoppingCart getShoppingCart() {
         return shoppingCart;
