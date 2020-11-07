@@ -6,8 +6,8 @@ import java.util.List;
 public class PremiumAccount extends Account {
     private ArrayList<Product> products;
 
-    public PremiumAccount(String accountId, String billingAddress, int balance, int object_id) {
-        super(accountId, billingAddress,balance,object_id);
+    public PremiumAccount(int object_id, String accountId, String billingAddress, int balance) {
+        super(object_id, accountId, billingAddress,balance);
         products = new ArrayList<Product>();
     }
 

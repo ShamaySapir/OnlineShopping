@@ -11,7 +11,7 @@ public abstract class Payment  {
     protected Account account;
     protected int object_id;
 
-    public Payment(String id, Date paid, float total, String details,int object_id) {
+    public Payment(int object_id, String id, Date paid, float total, String details) {
         this.id = id;
         this.paid = paid;
         this.total = total;
@@ -67,11 +67,11 @@ public abstract class Payment  {
         this.account = account;
     }
 
-    public int getObject_id() {
+    public int getObjectId() {
         return object_id;
     }
 
-    public void setObject_id(int object_id) {
+    public void setObjectId(int object_id) {
         this.object_id = object_id;
     }
 

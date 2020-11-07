@@ -2,6 +2,7 @@ package shopping;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class ShoppingCart {
 
@@ -11,7 +12,7 @@ public class ShoppingCart {
     private ArrayList<LineItem> lineItems;
     private int object_id;
 
-    public ShoppingCart(Date created, int object_id) {
+    public ShoppingCart(int object_id, Date created) {
 
         this.created = created;
         this.object_id = object_id;
@@ -54,11 +55,16 @@ public class ShoppingCart {
         this.lineItems = lineItems;
     }
 
-    public int getObject_id() {
+    public void addLineItem(LineItem lineItem){
+
+        this.lineItems.add(lineItem);
+    }
+
+    public int getObjectId() {
         return object_id;
     }
 
-    public void setObject_id(int object_id) {
+    public void setObjectId(int object_id) {
         this.object_id = object_id;
     }
 

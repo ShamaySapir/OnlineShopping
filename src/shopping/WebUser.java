@@ -10,7 +10,7 @@ public class WebUser {
     private ShoppingCart shoppingCart;
     private int object_id;
 
-    public WebUser(String login_id, String password, int object_id) {
+    public WebUser(int object_id, String login_id, String password) {
 
         this.login_id = login_id;
         this.password = password;
@@ -67,6 +67,14 @@ public class WebUser {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+    public int getObjectId() {
+        return object_id;
+    }
+
+    public void setObjectId(int object_id) {
+        this.object_id = object_id;
     }
 
     @Override

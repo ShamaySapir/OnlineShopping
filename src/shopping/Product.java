@@ -14,7 +14,7 @@ public class Product {
     private int inStock;
     private int object_id;
 
-    public Product(String id, String name,int object_id) {
+    public Product(int object_id, String id, String name) {
         this.id = id;
         this.name = name;
         this.lineItems = new ArrayList<>();
@@ -84,11 +84,11 @@ public class Product {
         this.lineItems = lineItems;
     }
 
-    public int getObject_id() {
+    public int getObjectId() {
         return object_id;
     }
 
-    public void setObject_id(int object_id) {
+    public void setObjectId(int object_id) {
         this.object_id = object_id;
     }
 

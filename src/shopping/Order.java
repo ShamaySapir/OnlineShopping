@@ -17,7 +17,7 @@ public class Order {
     private ArrayList<Payment> payments;
     private int object_id;
 
-    public Order(String number, Date ordered, Date shipped, Address ship_to, float total, int object_id) {
+    public Order(int object_id, String number, Date ordered, Date shipped, Address ship_to, float total) {
         this.number = number;
         this.ordered = ordered;
         this.shipped = shipped;
@@ -122,11 +122,11 @@ public class Order {
         this.payments = payments;
     }
 
-    public int getObject_id() {
+    public int getObjectId() {
         return object_id;
     }
 
-    public void setObject_id(int object_id) {
+    public void setObjectId(int object_id) {
         this.object_id = object_id;
     }
 
