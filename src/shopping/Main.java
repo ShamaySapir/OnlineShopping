@@ -1,5 +1,6 @@
 package shopping;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -20,7 +21,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
-       // ShoppingSystem shoppingSystem = new  ShoppingSystem();
+        ShoppingSystem shoppingSystem = new  ShoppingSystem();
 
         boolean flag = true;
 
@@ -58,10 +59,11 @@ public class Main {
                     System.out.println("Enter Billing Address");
                     String billingAddress = myObj.nextLine();
                     System.out.println("Enter your balance");
-                    String balance = myObj.nextLine();
+                    String balanceString = myObj.nextLine();
                     System.out.println("Are you a Premium Account? yes/no");
                     String premium_account = myObj.nextLine();
                     premium_account=premium_account.toLowerCase();
+                    int balance = Integer.parseInt(balanceString);
 
                     Boolean premiumAccount;
 
@@ -72,25 +74,25 @@ public class Main {
                         premiumAccount = false;
                     }
 
-                    //shoppingSystem.addWebUser(id,Password,country,city,balance,Street,Phone,Email,billingAddress,premiumAccount);
+                    shoppingSystem.addWebUser(id,Password,country,city,balance,Street,Phone,Email,billingAddress,premiumAccount);
                     break;
 
                 case "Remove WebUser":
 
                     String idRemove = listChoose[2];
-                    //shoppingSystem.removeWebUser(idRemove);
+                    shoppingSystem.removeWebUser(idRemove);
                     break;
 
                 case "Login WebUser":
                     Boolean connected = false;
                     String loginId = listChoose[2];
-                  //  String loginIdActive = shoppingSystem.getActiveUser();
+                    String loginIdActive = shoppingSystem.getActiveUser();
 
-                  /*  if(loginIdActive==""){
+                    if(loginIdActive==""){
                         while (!connected){
                             System.out.println("Enter Password");
                             String password = myObj.nextLine();
-                        //    connected = shoppingSystem.verifyLogin(loginId,password);
+                            connected = shoppingSystem.verifyLogin(loginId,password);
                         }
                     }
                     else if(loginIdActive == loginId){
@@ -98,16 +100,16 @@ public class Main {
                     }
                     else {
                         System.out.println("wait for"+ loginIdActive+"to log off");
-                    }*/
+                    }
 
                     break;
 
                 case "Logout WebUser":
-                   /* String logOutId = listChoose[2];
+                    String logOutId = listChoose[2];
                     String loginIdActiveNow = shoppingSystem.getActiveUser();
 
                     if( loginIdActiveNow == logOutId){
-                     //   shoppingSystem.logOut(logOutId);
+                        shoppingSystem.logOut(logOutId);
                         System.out.println("Bye bye...");
                       }
                     else if(loginIdActiveNow == ""){
@@ -115,7 +117,7 @@ public class Main {
                     }
                     else {
                         System.out.println("you are wrong in userId");
-                    }*/
+                    }
                     break;
 
                 case "Make order":
@@ -123,12 +125,12 @@ public class Main {
 
                     System.out.println("Enter Seller Name");
                     String nameseller = myObj.nextLine();
-                   // List<Product> listProduct = shoppingSystem.showSellerProduct(nameseller);
+                    List<Product> listProduct = shoppingSystem.showSellerProduct(nameseller);
 
-                   /* for (int i=0; i <listProduct.size() ;i++){
+                   for (int i=0; i <listProduct.size() ;i++){
                         Product product = listProduct.get(i);
                         System.out.println(product);
-                    }*/
+                    }
 
                     Boolean flagProudct=false;
 
@@ -136,16 +138,17 @@ public class Main {
                         System.out.println("please choose a product:");
                         String product =myObj.nextLine();
                         System.out.println("Enter quantity:");
-                        String quantity =myObj.nextLine();
+                        String quantityScanner =myObj.nextLine();
+                        int quantity = Integer.parseInt(quantityScanner);
 
                         Product p1 = null;
-                       /* for(int i = 0 ; i< listProduct.size();i++){
+                        for(int i = 0 ; i< listProduct.size();i++){
                             if (product == (listProduct.get(i)).getName()){
                                 p1=listProduct.get(i);
                             }
 
-                        }*/
-                        //shoppingSystem.addToShoppingCart(p1,quantity);
+                        }
+                        shoppingSystem.addToShoppingCart(p1,quantity);
                         System.out.println("you want more product? Y/N");
                         String nextItem =myObj.nextLine();
 
@@ -168,7 +171,7 @@ public class Main {
                     break;
 
                 case "Display order":
-                 //   shoppingSystem.getLastOrder();
+                    shoppingSystem.getLastOrder();
                     break;
 
                 case "Link Product":
@@ -181,7 +184,7 @@ public class Main {
                     int price1 =Integer.parseInt(price);
 
 
-                   // shoppingSystem.addProductToAccount(Product_name,quantity1,price1);
+                    shoppingSystem.addProductToAccount(Product_name,quantity1,price1);
                     break;
 
                 case "Add Product":
@@ -193,18 +196,19 @@ public class Main {
                     System.out.println("Enter SupplierID");
                     String SupplierID = myObj.nextLine();
 
-                   // shoppingSystem.addProduct(NameNewPro,productID,SupplierName,SupplierID);
+                    shoppingSystem.addProduct(NameNewPro,productID,SupplierName,SupplierID);
                     break;
                 case "Delete Product":
                     String ProductNameDelete = listChoose[2];
-                  //  shoppingSystem.DeleteProduct(ProductNameDelete);
+                    shoppingSystem.DeleteProduct(ProductNameDelete);
                     break;
                 case "ShowAllObjects":
-                    //shoppingSystem.showAllObject();
+                    shoppingSystem.showAllObjects();
                     break;
                 case "ShowObjectId":
-                    String idObject = listChoose[2];
-                    //shoppingSystem.ShowObjectId(idObject);
+                    String idObjectString = listChoose[2];
+                    int idObject = Integer.parseInt(idObjectString);
+                    shoppingSystem.showObjectId(idObject);
                     break;
                 case "Exit":
                     flag = false;

@@ -1,6 +1,7 @@
 package shopping;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -32,7 +33,7 @@ public class ShoppingSystem {
         this.addWebUser("Dana", "Dana123", "Israel", "Ashdod", 100, "Rambam 8", "054832771", "danabanana@post.bgu.ac.il", "Rambam 8", true);
 
         activeWebUser = webUsers.get("Dana");
-        addProductToAccount(products.get("Bamba"), 8,5);
+        addProductToAccount("Bamba", 8,5);
         activeWebUser = null;
     }
 
@@ -88,6 +89,11 @@ public class ShoppingSystem {
 
 
         objects.remove(activeWebUser.getCustomer().getAccount().getShoppingCart().getObjectId());
+        if(activeWebUser.getCustomer().getAccount() instanceof PremiumAccount){
+            for(Product product : ((PremiumAccount) activeWebUser.getCustomer().getAccount()).getProducts()){
+                product.setSeller(null);
+            }
+        }
         objects.remove(activeWebUser.getCustomer().getAccount().getObjectId());
         objects.remove(activeWebUser.getCustomer().getObjectId());
         objects.remove(activeWebUser.getObjectId());
@@ -161,7 +167,14 @@ public class ShoppingSystem {
         return orders.get(orders.size() - 1);
     }
 
-    public void addProductToAccount(Product product, int quantity, int price){
+    public void addProductToAccount(String productName, int quantity, int price){
+        Product product = null;
+
+        for(Product productIndex : products.values() ){
+            if(productName.equals(productIndex.getName())){
+                product = productIndex;
+            }
+        }
 
         Account seller = activeWebUser.getCustomer().getAccount();
 
@@ -237,6 +250,49 @@ public class ShoppingSystem {
         objects.put(order.getObjectId(), order);
 
         activeWebUser.getShoppingCart().getLineItems().clear();
+
+    }
+
+    public void DeleteProduct(String productNameDelete) {
+        Product product = null;
+
+        for(Product productIndex : products.values() ){
+            if(productNameDelete.equals(productIndex.getName())){
+                product = productIndex;
+            }
+        }
+
+        for(Supplier supplier : suppliers.values()){
+            if ((supplier.getProducts()).contains(product)){
+                (supplier.getProducts()).remove(product);
+            }
+        }
+
+        for(WebUser webUser : webUsers.values()){
+            for(LineItem lineItem :(webUser.getShoppingCart().getLineItems())){
+                if (lineItem.getProduct().equals(product))
+                (webUser.getShoppingCart().getLineItems()).remove(lineItem);
+            }
+        }
+
+
+        for(WebUser webUser : webUsers.values()){
+            for(Order order :(webUser.getCustomer().getAccount().getOrders())){
+                for(LineItem lineItem:order.getLineItems()){
+                    if(lineItem.getProduct().equals(product)){
+                        order.getLineItems().remove(lineItem);
+                    }
+                }
+            }
+        }
+
+       for(LineItem lineItem: product.getLineItems()) {
+           objects.remove(lineItem.getObjectId());
+       }
+
+       ArrayList<Product> products1 = product.getSeller().getProducts();
+       products1.remove(product);
+       objects.remove(product.getObjectId());
 
     }
 }
