@@ -13,19 +13,20 @@ public class Order {
     private OrderStatus status;
     private float total;
     private Account account;
-    //private ArrayList<LineItem> lineItems;
+    private ArrayList<LineItem> lineItems;
     private ArrayList<Payment> payments;
+    private int object_id;
 
-    public Order(String number, Date ordered, Date shipped, Address ship_to, OrderStatus status, float total, Account account) {
+    public Order(String number, Date ordered, Date shipped, Address ship_to, float total, int object_id) {
         this.number = number;
         this.ordered = ordered;
         this.shipped = shipped;
         this.ship_to = ship_to;
-        this.status = status;
+        this.status = OrderStatus.NEW;
         this.total = total;
-        this.account = account;
-        //lineItems = new ArrayList<LineItem>();
+        lineItems = new ArrayList<LineItem>();
         payments = new ArrayList<Payment>();
+        this.object_id = object_id;
     }
 
     public String getNumber() {
@@ -84,15 +85,8 @@ public class Order {
         this.account = account;
     }
 
-    /*public HashMap<LineItem, Integer> getLineIteams() {
-        return lineIteams;
-    }
 
-    public void setLineIteams(HashMap<LineItem, Integer> lineIteams) {
-        this.lineIteams = lineIteams;
-    }
-
-    public void addItem(LineItem lineItem){
+    public void addLineItem(LineItem lineItem){
         if (!lineItems.contains(lineItem))
             lineItems.add(lineItem);
     }
@@ -100,7 +94,7 @@ public class Order {
     public void removeItem(LineItem lineItem){
         if (lineItems.contains(lineItem))
             lineItems.remove(lineItem);
-    }*/
+    }
 
     public void addPayment(Payment payment){
         if (!payments.contains(payment))
@@ -112,13 +106,13 @@ public class Order {
             payments.remove(payment);
     }
 
-   /* public ArrayList<LineItem> getLineItems() {
+    public ArrayList<LineItem> getLineItems() {
         return lineItems;
     }
 
     public void setLineItems(ArrayList<LineItem> lineItems) {
         this.lineItems = lineItems;
-    }*/
+    }
 
     public ArrayList<Payment> getPayments() {
         return payments;
@@ -126,5 +120,29 @@ public class Order {
 
     public void setPayments(ArrayList<Payment> payments) {
         this.payments = payments;
+    }
+
+    public int getObject_id() {
+        return object_id;
+    }
+
+    public void setObject_id(int object_id) {
+        this.object_id = object_id;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "number='" + number + '\'' +
+                ", ordered=" + ordered +
+                ", shipped=" + shipped +
+                ", ship_to=" + ship_to +
+                ", status=" + status +
+                ", total=" + total +
+                ", account=" + account +
+                ", lineItems=" + lineItems +
+                ", payments=" + payments +
+                ", object_id=" + object_id +
+                '}';
     }
 }
