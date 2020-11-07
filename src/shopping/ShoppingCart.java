@@ -7,16 +7,69 @@ public class ShoppingCart {
 
     private Date created;
     private WebUser webUser;
-    //private ArrayList<LineItem> lineItems;
+    private Account account;
+    private ArrayList<LineItem> lineItems;
+    private int object_id;
 
-    public ShoppingCart(Date created, WebUser webUser) {
+    public ShoppingCart(Date created, int object_id) {
 
         this.created = created;
+        this.object_id = object_id;
+    }
+     public void addLineItemToCart(LineItem lineItem){
+        if(!lineItems.contains(lineItem)){
+            addLineItemToCart(lineItem);
+        }
+     }
+
+    public Date getCreated() {
+        return created;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public WebUser getWebUser() {
+        return webUser;
+    }
+
+    public void setWebUser(WebUser webUser) {
         this.webUser = webUser;
     }
 
-    public void deleteShoppingCart(){
+    public Account getAccount() {
+        return account;
+    }
 
-        // to add
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
+    public ArrayList<LineItem> getLineItems() {
+        return lineItems;
+    }
+
+    public void setLineItems(ArrayList<LineItem> lineItems) {
+        this.lineItems = lineItems;
+    }
+
+    public int getObject_id() {
+        return object_id;
+    }
+
+    public void setObject_id(int object_id) {
+        this.object_id = object_id;
+    }
+
+    @Override
+    public String toString() {
+        return "ShoppingCart{" +
+                "created=" + created +
+                ", webUser=" + webUser +
+                ", account=" + account +
+                ", lineItems=" + lineItems +
+                ", object_id=" + object_id +
+                '}';
     }
 }
