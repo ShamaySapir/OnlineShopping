@@ -1,7 +1,5 @@
 package shopping;
 
-import java.util.Date;
-
 public class WebUser {
     private String login_id;
     private String password;
