@@ -97,9 +97,9 @@ public class Product {
         return "Product{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
-                ", supplier=" + supplier +
-                ", seller=" + seller +
-                ", lineItems=" + lineItems +
+                //", supplier=" + supplier +
+                //", seller=" + seller +
+                //", lineItems=" + lineItems +
                 ", price=" + price +
                 ", inStock=" + inStock +
                 '}';

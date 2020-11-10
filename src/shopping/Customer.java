@@ -81,8 +81,8 @@ public class Customer {
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
                 ", address=" + address +
-                ", webUser=" + webUser +
-                ", account=" + account +
+                //", webUser=" + webUser +
+                //", account=" + account +
                 ", object_id=" + object_id +
                 '}';
     }

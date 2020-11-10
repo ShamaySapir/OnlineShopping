@@ -81,8 +81,8 @@ public class WebUser {
                 "login_id='" + login_id + '\'' +
                 ", password='" + password + '\'' +
                 ", state=" + state +
-                ", customer=" + customer +
-                ", shoppingCart=" + shoppingCart +
+                //", customer=" + customer +
+                //", shoppingCart=" + shoppingCart +
                 ", object_id=" + object_id +
                 '}';
     }
