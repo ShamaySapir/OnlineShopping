@@ -1,6 +1,5 @@
 package shopping;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -21,7 +20,10 @@ public class ShoppingSystem {
 
     public ShoppingSystem() {
         this.webUsers = new HashMap<>();
-        objects = new HashMap<>();
+        this.objects = new HashMap<>();
+        this.suppliers = new HashMap<>();
+        this.products = new HashMap<>();
+
         ShoppingSystem.activeWebUser = null;
 
         // create default database
