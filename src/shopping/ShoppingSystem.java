@@ -102,8 +102,10 @@ public class ShoppingSystem {
         webUsers.remove(id);
 
         if (activeWebUser.getLoginId().equals(id)){
+            objects.remove(activeWebUser.getObjectId());
             activeWebUser = null;
         }
+
     }
 
     public Boolean verifyLogin(String loginId, String password){
