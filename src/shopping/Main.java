@@ -7,7 +7,7 @@ public class Main {
 
     public static String chooseForCase(String choose){
 
-        int index=0;
+        int index=-1;
         String[] Dic = {"Add WebUser","Exit","Remove WebUser","Login WebUser","Logout WebUser","Make order","Display order","Link Product","Add Product","Delete Product","ShowAllObjects","ShowObjectId" };
 
         for (int i=0; i<Dic.length; i++){
@@ -17,7 +17,10 @@ public class Main {
                 break;
             }
         }
-        return Dic[index];
+        if (index != -1)
+            return Dic[index];
+        else
+            return "Default";
     }
 
     public static void main(String[] args) {
@@ -28,7 +31,7 @@ public class Main {
         while (flag){
 
             Scanner myObj = new Scanner(System.in);
-            System.out.println("please enter one of the following commnads:\n1.Add WebUser *Login_id*" +
+            System.out.println("Please enter one of the following commnads:\n1.Add WebUser *Login_id*" +
                     "\n2.Remove WebUser *Login_id*\n3.Login WebUser *Login_id*\n4.Logout WebUser *Login_id*" +
                     "\n5.Make order\n6.Display order\n7.Link Product *Product_name*\n8.Add Product " +
                     "\n9.Delete Product *Product_name*\n10.ShowAllObjects\n11.ShowObjectId *id*\n12.Exit");
@@ -213,6 +216,8 @@ public class Main {
                 case "Exit":
                     flag = false;
                     break;
+                default:
+                    System.out.println("Please try again");
             }
         }
 
