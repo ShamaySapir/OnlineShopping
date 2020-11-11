@@ -22,7 +22,7 @@ public class DelayedPayment extends Payment {
     @Override
     public String toString() {
         String fields = "DelayedPayment, id:" + id + ", Paid:" + paid + ", Total:" + total + ", Details:" + details + ", PaymentDate:" + paymentDate+ "\n";
-        String connected = "Connected to: Account:" + account.getClass().getSimpleName() + ", Order:" + order.getClass().getSimpleName();
+        String connected = "Connected to:" + account.getClass().getSimpleName() + ", " + order.getClass().getSimpleName();
         return fields+connected;
     }
 }

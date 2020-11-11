@@ -62,7 +62,15 @@ public class Supplier {
 
     public String toString(){
         String fields = "Supplier, id:" + id + ", Name:" + name +"\n";
-        String connected = "Connected to: Products:" + products.size() + "products";
+        String connected = "Connected to:";
+        if (products.size() > 0){
+            String prods = "";
+            for (Product p : products){
+                prods += p.getClass().getSimpleName() + ",";
+
+            }
+            connected += ", " + prods;
+        }
         return fields + connected;
     }
 }

@@ -25,8 +25,32 @@ public class PremiumAccount extends Account {
     public String toString() {
         String fields = "Account, id:" + accountId + ", Billing Address:" + billingAddress + ", Is Closed:" + isClosed + ", Opened:" + open
                 + ", Closed:" + closed + ", Balance:" + balance + "\n";
-        String connected = "Connected to: Customer:" + customer.getClass().getSimpleName() + ", Shopping Cart:" + shoppingCart.getClass().getSimpleName() + ", Orders" +
-                orders.size() + " orders" + ", Payments" + payments.size() + payments + ", Products:"+ products.size() + " products";
+        String connected = "Connected to:" + customer.getClass().getSimpleName() + ", " + shoppingCart.getClass().getSimpleName();
+        if (orders.size() > 0){
+            String ords = "";
+            for (Order o : orders){
+                ords += o.getClass().getSimpleName() + ",";
+
+            }
+            connected += ", " + ords;
+        }
+        if (payments.size() > 0){
+            String pays = "";
+            for (Payment p : payments){
+                pays += p.getClass().getSimpleName() + ",";
+
+            }
+            connected += ", " + pays;
+        }
+        if (products.size() > 0){
+            String prod = "";
+            for (Product p : products){
+                prod += p.getClass().getSimpleName() + ",";
+
+            }
+            connected += ", " + prod;
+        }
+
         return fields + connected;
     }
 }

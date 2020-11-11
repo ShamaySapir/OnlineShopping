@@ -71,7 +71,7 @@ public class LineItem {
     @Override
     public String toString() {
         String fields = "Line Item, Quantity:" + quantity + ", Price:" + price + "\n";
-        String Connected = "Product:" + product.getClass().getSimpleName() + ", Shopping Cart:" + shoppingCart.getClass().getSimpleName() + ", Order:" + order.getClass().getSimpleName();
+        String Connected = product.getClass().getSimpleName() + ", " + shoppingCart.getClass().getSimpleName() + ", " + order.getClass().getSimpleName();
         return fields+Connected;
     }
 }
