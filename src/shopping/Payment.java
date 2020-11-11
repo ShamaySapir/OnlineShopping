@@ -71,7 +71,7 @@ public abstract class Payment  {
         return object_id;
     }
 
-    public void setObjectId(int object_id) {
+    public void setObjectId(int  object_id) {
         this.object_id = object_id;
     }
 
