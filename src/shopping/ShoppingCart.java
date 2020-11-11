@@ -71,7 +71,15 @@ public class ShoppingCart {
     @Override
     public String toString() {
         String fields = "Shopping Cart, Created:" + created + "\n";
-        String Connected = "Connected to Webuser:" + webUser + ", Account:" + account + ", LineItems:" + lineItems.size() + " line items";
+        String Connected = "Connected to:" + webUser.getClass().getSimpleName() + ", " + account.getClass().getSimpleName();
+        if (lineItems.size() > 0){
+            String lines = "";
+            for (LineItem li : lineItems){
+                lines += li.getClass().getSimpleName() + ",";
+
+            }
+            Connected += ", " + lineItems;
+        }
         return fields + Connected;
     }
 }

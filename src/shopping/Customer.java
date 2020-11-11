@@ -77,7 +77,7 @@ public class Customer {
     @Override
     public String toString() {
         String fields = "Customer, id:" + name + ", Phone:" + phone + ", Email:" +email + ", Address:" + address.toString() + "\n";
-        String connected = "Connected to: Account:" + account.getClass().getSimpleName();
+        String connected = "Connected to:" + account.getClass().getSimpleName();
         if (webUser != null){
             connected += ", WebUser:" + webUser;
         }

@@ -95,7 +95,15 @@ public class Product {
     @Override
     public String toString() {
         String fields = "Product, id:" + id + ", Name:" + name + ", inStock" + inStock + "\n";
-        String Connected = "Connected to: Supplier:" + supplier.getClass().getSimpleName() + ", Line Item:" + lineItems.size() + "line items";
+        String Connected = "Connected to:" + supplier.getClass().getSimpleName();
+        if (lineItems.size() > 0){
+            String lines = "";
+            for (LineItem li : lineItems){
+                lines += li.getClass().getSimpleName() + ",";
+
+            }
+            Connected += ", " + lineItems;
+        }
         if (seller != null){
             Connected+= ", Seller:" + seller.getClass().getSimpleName();
         }

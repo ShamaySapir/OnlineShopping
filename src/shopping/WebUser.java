@@ -78,9 +78,9 @@ public class WebUser {
     @Override
     public String toString() {
         String field = "WebUser, Login ID:" + login_id + ", Password:" + password + ", Status:" + state.name() +"\n";
-        String connected = "Conncted to: Customer" + customer.getClass().getSimpleName();
+        String connected = "Conncted to:" + customer.getClass().getSimpleName();
         if (shoppingCart != null){
-            connected += ", Shopping Cart: " + shoppingCart.getClass().getSimpleName();
+            connected +=  ", " + shoppingCart.getClass().getSimpleName();
         }
         return field+shoppingCart;
     }
