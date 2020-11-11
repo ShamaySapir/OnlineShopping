@@ -80,7 +80,6 @@ public class Customer {
         String connected = "Connected to:" + account.getClass().getSimpleName();
         if (webUser != null){
             connected += ", " + webUser.getClass().getSimpleName();
-
         }
         return fields+connected;
     }

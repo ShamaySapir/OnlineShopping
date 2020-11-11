@@ -61,7 +61,8 @@ public class Main {
                     // Arg Account
                     System.out.println("Enter Billing Address");
                     String billingAddress = myObj.nextLine();
-                    System.out.println("Enter your balance(int)");
+
+                    System.out.println("Enter your balance (integer)");
                     String balanceString = myObj.nextLine();
                     System.out.println("Are you a Premium Account? yes/no");
                     String premium_account = myObj.nextLine();
@@ -174,8 +175,7 @@ public class Main {
                     break;
 
                 case "Display order":
-                    Order order=  shoppingSystem.getLastOrder();
-                    System.out.println(order);
+                    System.out.println(shoppingSystem.getLastOrder().toString());
                     break;
 
                 case "Link Product":
