@@ -132,17 +132,8 @@ public class Order {
 
     @Override
     public String toString() {
-        return "Order{" +
-                "number='" + number + '\'' +
-                ", ordered=" + ordered +
-                ", shipped=" + shipped +
-                ", ship_to=" + ship_to +
-                ", status=" + status +
-                ", total=" + total +
-                //", account=" + account +
-                //", lineItems=" + lineItems +
-                //", payments=" + payments +
-                ", object_id=" + object_id +
-                '}';
+        String fields = "Order, " + "number:" + number + ", ordered:" + ordered + ", shipped:" + shipped + ", ship_to:" + ship_to + ", status:" + status.name() + ", total:" + total + "\n";
+        String connected = "Connected to: Account:" + account.getClass().getSimpleName() + "Line Items:" + lineItems.size() + "line items" + ", Payments:" + payments.size() + "payments";
+        return fields + connected;
     }
 }

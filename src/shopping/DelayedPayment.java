@@ -21,15 +21,8 @@ public class DelayedPayment extends Payment {
 
     @Override
     public String toString() {
-        return "DelayedPayment{" +
-                "paymentDate=" + paymentDate +
-                ", id='" + id + '\'' +
-                ", paid=" + paid +
-                ", total=" + total +
-                ", details='" + details + '\'' +
-                //", order=" + order +
-                //", account=" + account +
-                ", object_id=" + object_id +
-                '}';
+        String fields = "DelayedPayment, id:" + id + ", Paid:" + paid + ", Total:" + total + ", Details:" + details + ", PaymentDate:" + paymentDate+ "\n";
+        String connected = "Connected to: Account:" + account.getClass().getSimpleName() + ", Order:" + order.getClass().getSimpleName();
+        return fields+connected;
     }
 }

@@ -94,14 +94,11 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                //", supplier=" + supplier +
-                //", seller=" + seller +
-                //", lineItems=" + lineItems +
-                ", price=" + price +
-                ", inStock=" + inStock +
-                '}';
+        String fields = "Product, id:" + id + ", Name:" + name + ", inStock" + inStock + "\n";
+        String Connected = "Connected to: Supplier:" + supplier.getClass().getSimpleName() + ", Line Item:" + lineItems.size() + "line items";
+        if (seller != null){
+            Connected+= ", Seller:" + seller.getClass().getSimpleName();
+        }
+        return fields + Connected;
     }
 }

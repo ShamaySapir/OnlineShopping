@@ -59,4 +59,10 @@ public class Supplier {
     public void setObjectId(int object_id) {
         this.object_id = object_id;
     }
+
+    public String toString(){
+        String fields = "Supplier, id:" + id + ", Name:" + name +"\n";
+        String connected = "Connected to: Products:" + products.size() + "products";
+        return fields + connected;
+    }
 }

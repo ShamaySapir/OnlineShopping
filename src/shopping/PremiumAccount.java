@@ -23,19 +23,10 @@ public class PremiumAccount extends Account {
 
     @Override
     public String toString() {
-        return "PremiumAccount{" +
-                //"products=" + products +
-                ", accountId='" + accountId + '\'' +
-                ", billingAddress='" + billingAddress + '\'' +
-                ", isClosed=" + isClosed +
-                ", open=" + open +
-                ", closed=" + closed +
-                ", balance=" + balance +
-                //", shoppingCart=" + shoppingCart +
-                //", orders=" + orders +
-                //", payments=" + payments +
-                //", customer=" + customer +
-                ", object_id=" + object_id +
-                '}';
+        String fields = "Account, id:" + accountId + ", Billing Address:" + billingAddress + ", Is Closed:" + isClosed + ", Opened:" + open
+                + ", Closed:" + closed + ", Balance:" + balance + "\n";
+        String connected = "Connected to: Customer:" + customer.getClass().getSimpleName() + ", Shopping Cart:" + shoppingCart.getClass().getSimpleName() + ", Orders" +
+                orders.size() + " orders" + ", Payments" + payments.size() + payments + ", Products:"+ products.size() + " products";
+        return fields + connected;
     }
 }

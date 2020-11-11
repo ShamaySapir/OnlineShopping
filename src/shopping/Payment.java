@@ -76,15 +76,5 @@ public abstract class Payment  {
     }
 
     @Override
-    public String toString() {
-        return "Payment{" +
-                "id='" + id + '\'' +
-                ", paid=" + paid +
-                ", total=" + total +
-                ", detalis='" + details + '\'' +
-                ", order=" + order +
-                ", account=" + account +
-                ", object_id=" + object_id +
-                '}';
-    }
+    public abstract String toString();
 }

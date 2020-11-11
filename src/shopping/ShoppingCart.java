@@ -70,12 +70,8 @@ public class ShoppingCart {
 
     @Override
     public String toString() {
-        return "ShoppingCart{" +
-                "created=" + created +
-                //", webUser=" + webUser +
-                //", account=" + account +
-                //", lineItems=" + lineItems +
-                ", object_id=" + object_id +
-                '}';
+        String fields = "Shopping Cart, Created:" + created + "\n";
+        String Connected = "Connected to Webuser:" + webUser + ", Account:" + account + ", LineItems:" + lineItems.size() + " line items";
+        return fields + Connected;
     }
 }

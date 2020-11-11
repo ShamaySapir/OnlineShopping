@@ -70,13 +70,8 @@ public class LineItem {
 
     @Override
     public String toString() {
-        return "LineItem{" +
-                "quantity=" + quantity +
-                ", price=" + price +
-                ", product=" + product +
-                //", shoppingCart=" + shoppingCart +
-                //", order=" + order +
-                ", object_id=" + object_id +
-                '}';
+        String fields = "Line Item, Quantity:" + quantity + ", Price:" + price + "\n";
+        String Connected = "Product:" + product.getClass().getSimpleName() + ", Shopping Cart:" + shoppingCart.getClass().getSimpleName() + ", Order:" + order.getClass().getSimpleName();
+        return fields+Connected;
     }
 }

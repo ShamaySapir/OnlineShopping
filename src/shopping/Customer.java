@@ -76,15 +76,12 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "Customer{" +
-                "name='" + name + '\'' +
-                ", phone='" + phone + '\'' +
-                ", email='" + email + '\'' +
-                ", address=" + address +
-                //", webUser=" + webUser +
-                //", account=" + account +
-                ", object_id=" + object_id +
-                '}';
+        String fields = "Customer, id:" + name + ", Phone:" + phone + ", Email:" +email + ", Address:" + address.toString() + "\n";
+        String connected = "Connected to: Account:" + account.getClass().getSimpleName();
+        if (webUser != null){
+            connected += ", WebUser:" + webUser;
+        }
+        return fields+connected;
     }
 }
 
