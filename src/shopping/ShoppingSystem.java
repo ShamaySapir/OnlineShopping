@@ -156,7 +156,6 @@ public class ShoppingSystem {
         activeWebUser.getShoppingCart().addLineItem(lineItem);
 
         product.addLineItem(lineItem);
-        product.setInStock(product.getInStock()-quantity);
         lineItem.setProduct(product);
 
         objects.put(lineItem.getObjectId(), lineItem);
@@ -218,7 +217,21 @@ public class ShoppingSystem {
 
         for (Integer objectId: objects.keySet()) {
             String className = objects.get(objectId).getClass().getSimpleName();
-            System.out.println(className + " " + objectId);
+            if(objects.get(objectId) instanceof Product){
+                System.out.println(className + " " + objectId + " - " + ((Product)objects.get(objectId)).getName());
+            }
+            else if(objects.get(objectId) instanceof WebUser){
+                System.out.println(className + " " + objectId + " - " + ((WebUser)objects.get(objectId)).getLoginId());
+            }
+            else if(objects.get(objectId) instanceof Account){
+                System.out.println(className + " " + objectId + " - " + ((Account)objects.get(objectId)).getAccountId());
+            }
+            else if(objects.get(objectId) instanceof Supplier){
+                System.out.println(className + " " + objectId + " - " + ((Supplier)objects.get(objectId)).getName());
+            }
+            else{
+                System.out.println(className + " " + objectId);
+            }
         }
     }
 
