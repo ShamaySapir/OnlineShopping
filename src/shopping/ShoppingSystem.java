@@ -1,5 +1,7 @@
 package shopping;
 
+import com.sun.corba.se.spi.ior.ObjectId;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -61,6 +63,7 @@ public class ShoppingSystem {
         customer.setAccount(account);
         customer.setWebUser(webUser);
         webUser.setCustomer(customer);
+        webUser.setShoppingCart(shoppingCart);
 
         objects.put(customer.getObjectId(), customer);
         objects.put(account.getObjectId(), account);
@@ -153,6 +156,7 @@ public class ShoppingSystem {
         activeWebUser.getShoppingCart().addLineItem(lineItem);
 
         product.addLineItem(lineItem);
+        product.setInStock(product.getInStock()-quantity);
         lineItem.setProduct(product);
 
         objects.put(lineItem.getObjectId(), lineItem);
