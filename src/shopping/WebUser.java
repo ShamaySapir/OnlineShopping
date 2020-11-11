@@ -82,6 +82,6 @@ public class WebUser {
         if (shoppingCart != null){
             connected +=  ", " + shoppingCart.getClass().getSimpleName();
         }
-        return field+shoppingCart;
+        return field+connected;
     }
 }
