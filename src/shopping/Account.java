@@ -125,18 +125,18 @@ public class Account {
         if (orders.size() > 0){
             String ords = "";
             for (Order o : orders){
-                ords += o.getClass().getSimpleName() + ",";
+                ords += o.getClass().getSimpleName() + " ";
 
             }
-            connected += ", " + ords;
+            connected += " " + ords;
         }
         if (payments.size() > 0){
             String pays = "";
             for (Payment p : payments){
-                pays += p.getClass().getSimpleName() + ",";
+                pays += p.getClass().getSimpleName() + " ";
 
             }
-            connected += ", " + pays;
+            connected += " " + pays;
         }
 
         return fields + connected;
@@ -149,6 +149,6 @@ public class Account {
 
     public void addOrder(Order order){
         if (!orders.contains(order))
-            orders.contains(order);
+            orders.add(order);
     }
 }

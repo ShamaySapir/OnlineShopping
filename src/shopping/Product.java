@@ -99,10 +99,10 @@ public class Product {
         if (lineItems.size() > 0){
             String lines = "";
             for (LineItem li : lineItems){
-                lines += li.getClass().getSimpleName() + ",";
+                lines += li.getClass().getSimpleName() + " ";
 
             }
-            Connected += ", " + lineItems;
+            Connected += " " + lines;
         }
         if (seller != null){
             Connected+= ", Seller:" + seller.getClass().getSimpleName();

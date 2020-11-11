@@ -15,8 +15,8 @@ public class ShoppingSystem {
     private HashMap<String, Product> products; // key - product id
 
     private static int objectId = 1;
-    private static int orderNumber = 0;
-    private static int paymentNumber = 0;
+    private static int orderNumber = 1;
+    private static int paymentNumber = 1;
 
     private static WebUser activeWebUser;
 
@@ -58,6 +58,7 @@ public class ShoppingSystem {
         ShoppingCart shoppingCart = new ShoppingCart(objectId++, new Date());
 
         shoppingCart.setAccount(account);
+        shoppingCart.setWebUser(webUser);
         account.setShoppingCart(shoppingCart);
         account.setCustomer(customer);
         customer.setAccount(account);
@@ -237,7 +238,7 @@ public class ShoppingSystem {
 
     public void makeOrder(Boolean isDelayed, int numOfPayments){
 
-        Order order = new Order(objectId++, String.valueOf(orderNumber++), new Date(), null, activeWebUser.getCustomer().getAddress(), 0);
+        Order order = new Order(objectId++, String.valueOf(orderNumber++), new Date(), new Date(), activeWebUser.getCustomer().getAddress(), 0);
 
         float total = 0;
         for(LineItem lineItem : activeWebUser.getShoppingCart().getLineItems()){
@@ -246,6 +247,7 @@ public class ShoppingSystem {
             order.addLineItem(lineItem);
             lineItem.getProduct().setInStock(lineItem.getProduct().getInStock() - lineItem.getQuantity());
         }
+        order.setTotal(total);
 
         for(int i = 0; i < numOfPayments; i++) {
 
@@ -310,9 +312,10 @@ public class ShoppingSystem {
        for(LineItem lineItem: product.getLineItems()) {
            objects.remove(lineItem.getObjectId());
        }
-
-       ArrayList<Product> products1 = product.getSeller().getProducts();
-       products1.remove(product);
+       if(product.getSeller() != null){
+           ArrayList<Product> products1 = product.getSeller().getProducts();
+           products1.remove(product);
+       }
        objects.remove(product.getObjectId());
 
     }

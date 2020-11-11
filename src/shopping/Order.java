@@ -132,15 +132,15 @@ public class Order {
 
     @Override
     public String toString() {
-        String fields = "Order, " + "number:" + number + ", ordered:" + ordered + ", shipped:" + shipped + ", ship_to:" + ship_to + ", status:" + status.name() + ", total:" + total + "\n";
+        String fields = "Order, " + "orderNumber:" + number + ", ordered:" + ordered + ", shipped:" + shipped + ", ship_to:" + ship_to + ", status:" + status.name() + ", total:" + total + "\n";
         String connected = "Connected to:" + account.getClass().getSimpleName();
         if (lineItems.size() > 0){
             String lines = "";
             for (LineItem li : lineItems){
-                lines += li.getClass().getSimpleName() + ",";
+                lines += li.getClass().getSimpleName() + " ";
 
             }
-            connected += ", " + lineItems;
+            connected += " " + lines;
         }
         if (payments.size() > 0){
             String pays = "";
@@ -148,7 +148,7 @@ public class Order {
                 pays += p.getClass().getSimpleName() + ",";
 
             }
-            connected += ", " + pays;
+            connected += " " + pays;
         }
         return fields + connected;
     }

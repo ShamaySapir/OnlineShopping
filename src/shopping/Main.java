@@ -174,7 +174,7 @@ public class Main {
                     break;
 
                 case "Display order":
-                    shoppingSystem.getLastOrder();
+                    System.out.println(shoppingSystem.getLastOrder().toString());
                     break;
 
                 case "Link Product":
@@ -205,6 +205,7 @@ public class Main {
                 case "Delete Product":
                     String ProductNameDelete = listChoose[2];
                     shoppingSystem.DeleteProduct(ProductNameDelete);
+                    System.out.println("Product deleted");
                     break;
                 case "ShowAllObjects":
                     shoppingSystem.showAllObjects();
