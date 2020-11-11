@@ -111,7 +111,7 @@ public class Main {
                     String logOutId = listChoose[2];
                     String loginIdActiveNow = shoppingSystem.getActiveUser();
 
-                    if( loginIdActiveNow == logOutId){
+                    if( loginIdActiveNow.equals(logOutId)){
                         shoppingSystem.logOut(logOutId);
                         System.out.println("Bye bye...");
                       }
@@ -146,7 +146,7 @@ public class Main {
 
                         Product p1 = null;
                         for(int i = 0 ; i< listProduct.size();i++){
-                            if (product == (listProduct.get(i)).getName()){
+                            if (product.equals((listProduct.get(i)).getName())){
                                 p1=listProduct.get(i);
                             }
 
@@ -155,14 +155,14 @@ public class Main {
                         System.out.println("you want more product? Y/N");
                         String nextItem =myObj.nextLine();
 
-                        if (nextItem == "N")
+                        if (nextItem.equals("N"))
                             flagProudct=true;
                     }
                     Boolean isDelayed = false;
                     System.out.println("enter one of the following:\n" +
                             "DelayedPayment or ImmediatePayment ");
                     String pay = myObj.nextLine();
-                    if(pay == "DelayedPayment" )
+                    if(pay.equals("DelayedPayment"))
                         isDelayed=true;
                     System.out.println("How many payments would you like?");
                     String numPay = myObj.nextLine();
@@ -191,7 +191,8 @@ public class Main {
                     break;
 
                 case "Add Product":
-                    String NameNewPro = listChoose[2];
+                    System.out.println("Enter product name");
+                    String NameNewPro = myObj.nextLine();
                     System.out.println("Enter ID");
                     String productID = myObj.nextLine();
                     System.out.println("Enter Supplier");
@@ -209,7 +210,7 @@ public class Main {
                     shoppingSystem.showAllObjects();
                     break;
                 case "ShowObjectId":
-                    String idObjectString = listChoose[2];
+                    String idObjectString = listChoose[1];
                     int idObject = Integer.parseInt(idObjectString);
                     shoppingSystem.showObjectId(idObject);
                     break;

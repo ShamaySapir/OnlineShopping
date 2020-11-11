@@ -16,6 +16,7 @@ public class ShoppingCart {
 
         this.created = created;
         this.object_id = object_id;
+        lineItems = new ArrayList<>();
     }
      public void addLineItemToCart(LineItem lineItem){
         if(!lineItems.contains(lineItem)){
