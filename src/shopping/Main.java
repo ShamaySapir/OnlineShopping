@@ -61,7 +61,7 @@ public class Main {
                     // Arg Account
                     System.out.println("Enter Billing Address");
                     String billingAddress = myObj.nextLine();
-                    System.out.println("Enter your balance");
+                    System.out.println("Enter your balance(int)");
                     String balanceString = myObj.nextLine();
                     System.out.println("Are you a Premium Account? yes/no");
                     String premium_account = myObj.nextLine();
@@ -70,7 +70,7 @@ public class Main {
 
                     Boolean premiumAccount;
 
-                    if(premium_account == "yes"){
+                    if(premium_account.equals("yes")){
                         premiumAccount=true;
                     }
                     else {
@@ -91,14 +91,14 @@ public class Main {
                     String loginId = listChoose[2];
                     String loginIdActive = shoppingSystem.getActiveUser();
 
-                    if(loginIdActive==""){
+                    if(loginIdActive.equals("")){
                         while (!connected){
                             System.out.println("Enter Password");
                             String password = myObj.nextLine();
                             connected = shoppingSystem.verifyLogin(loginId,password);
                         }
                     }
-                    else if(loginIdActive == loginId){
+                    else if(loginIdActive.equals(loginId)){
                         System.out.println("You are already login");
                     }
                     else {
@@ -115,7 +115,7 @@ public class Main {
                         shoppingSystem.logOut(logOutId);
                         System.out.println("Bye bye...");
                       }
-                    else if(loginIdActiveNow == ""){
+                    else if(loginIdActiveNow.equals("")){
                         System.out.println("No one's login");
                     }
                     else {
@@ -174,7 +174,8 @@ public class Main {
                     break;
 
                 case "Display order":
-                    shoppingSystem.getLastOrder();
+                    Order order=  shoppingSystem.getLastOrder();
+                    System.out.println(order);
                     break;
 
                 case "Link Product":
@@ -205,6 +206,7 @@ public class Main {
                 case "Delete Product":
                     String ProductNameDelete = listChoose[2];
                     shoppingSystem.DeleteProduct(ProductNameDelete);
+                    System.out.println("Product deleted");
                     break;
                 case "ShowAllObjects":
                     shoppingSystem.showAllObjects();

@@ -79,7 +79,8 @@ public class Customer {
         String fields = "Customer, id:" + name + ", Phone:" + phone + ", Email:" +email + ", Address:" + address.toString() + "\n";
         String connected = "Connected to:" + account.getClass().getSimpleName();
         if (webUser != null){
-            connected += ", WebUser:" + webUser;
+            connected += ", " + webUser.getClass().getSimpleName();
+
         }
         return fields+connected;
     }

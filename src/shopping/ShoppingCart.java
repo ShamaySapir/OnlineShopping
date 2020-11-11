@@ -79,7 +79,7 @@ public class ShoppingCart {
                 lines += li.getClass().getSimpleName() + ",";
 
             }
-            Connected += ", " + lineItems;
+            Connected += ", " + lines;
         }
         return fields + Connected;
     }
