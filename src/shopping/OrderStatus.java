@@ -1,6 +1,6 @@
 package shopping;
 
-public enum OrderStatus {
+enum OrderStatus {
 
     NEW,
     HOLD,

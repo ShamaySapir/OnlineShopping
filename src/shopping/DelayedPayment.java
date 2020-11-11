@@ -7,7 +7,7 @@ public class DelayedPayment extends Payment {
     private Date paymentDate;
 
     public DelayedPayment(int object_id, String id, Date paid, float total, String details, Date paymentDate) {
-        super(object_id,id, paid, total, details);
+        super(object_id, id, paid, total, details);
         this.paymentDate = paymentDate;
     }
 
@@ -27,8 +27,8 @@ public class DelayedPayment extends Payment {
                 ", paid=" + paid +
                 ", total=" + total +
                 ", details='" + details + '\'' +
-                ", order=" + order +
-                ", account=" + account +
+                //", order=" + order +
+                //", account=" + account +
                 ", object_id=" + object_id +
                 '}';
     }

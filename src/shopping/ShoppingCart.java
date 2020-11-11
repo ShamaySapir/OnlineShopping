@@ -72,9 +72,9 @@ public class ShoppingCart {
     public String toString() {
         return "ShoppingCart{" +
                 "created=" + created +
-                ", webUser=" + webUser +
-                ", account=" + account +
-                ", lineItems=" + lineItems +
+                //", webUser=" + webUser +
+                //", account=" + account +
+                //", lineItems=" + lineItems +
                 ", object_id=" + object_id +
                 '}';
     }

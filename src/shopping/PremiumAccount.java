@@ -24,17 +24,17 @@ public class PremiumAccount extends Account {
     @Override
     public String toString() {
         return "PremiumAccount{" +
-                "products=" + products +
+                //"products=" + products +
                 ", accountId='" + accountId + '\'' +
                 ", billingAddress='" + billingAddress + '\'' +
                 ", isClosed=" + isClosed +
                 ", open=" + open +
                 ", closed=" + closed +
                 ", balance=" + balance +
-                ", shoppingCart=" + shoppingCart +
-                ", orders=" + orders +
-                ", payments=" + payments +
-                ", customer=" + customer +
+                //", shoppingCart=" + shoppingCart +
+                //", orders=" + orders +
+                //", payments=" + payments +
+                //", customer=" + customer +
                 ", object_id=" + object_id +
                 '}';
     }

@@ -18,6 +18,8 @@ public class Account {
     protected int object_id;
 
     public Account(int object_id, String accountId, String billingAddress,int balance) {
+        this.object_id = object_id;
+        this.balance = balance;
         this.accountId = accountId;
         this.billingAddress = billingAddress;
         this.isClosed = false;
@@ -118,16 +120,16 @@ public class Account {
     @Override
     public String toString() {
         return "Account{" +
-                "accountId='" + accountId + '\'' +
+                //"accountId='" + accountId + '\'' +
                 ", billingAddress='" + billingAddress + '\'' +
                 ", isClosed=" + isClosed +
                 ", open=" + open +
                 ", closed=" + closed +
                 ", balance=" + balance +
-                ", shoppingCart=" + shoppingCart +
-                ", orders=" + orders +
-                ", payments=" + payments +
-                ", customer=" + customer +
+                //", shoppingCart=" + shoppingCart +
+                //", orders=" + orders +
+                //", payments=" + payments +
+                //", customer=" + customer +
                 ", object_id=" + object_id +
                 '}';
     }

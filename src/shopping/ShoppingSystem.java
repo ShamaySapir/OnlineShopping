@@ -1,6 +1,5 @@
 package shopping;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -13,7 +12,7 @@ public class ShoppingSystem {
     private HashMap<String, Supplier> suppliers; // key - supplier id
     private HashMap<String, Product> products; // key - product id
 
-    private static int objectId = 0;
+    private static int objectId = 1;
     private static int orderNumber = 0;
     private static int paymentNumber = 0;
 
@@ -21,7 +20,10 @@ public class ShoppingSystem {
 
     public ShoppingSystem() {
         this.webUsers = new HashMap<>();
-        objects = new HashMap<>();
+        this.objects = new HashMap<>();
+        this.suppliers = new HashMap<>();
+        this.products = new HashMap<>();
+
         ShoppingSystem.activeWebUser = null;
 
         // create default database
@@ -29,7 +31,7 @@ public class ShoppingSystem {
         this.addProduct("Bamba", "Bamba", "Moshe", "123");
         this.addProduct("Ramen", "Ramen", "Moshe", "123");
 
-        this.addWebUser("Dani", "Dani123", "Israel", "Haifa", 100, "ShmuelHaNavi 3", "055425478512", "danibanani@post.bgu.ac.il", "ShmuelHaNavi 3", true);
+        this.addWebUser("Dani", "Dani123", "Israel", "Haifa", 100, "ShmuelHaNavi 3", "055425478512", "danibanani@post.bgu.ac.il", "ShmuelHaNavi 3", false);
         this.addWebUser("Dana", "Dana123", "Israel", "Ashdod", 100, "Rambam 8", "054832771", "danabanana@post.bgu.ac.il", "Rambam 8", true);
 
         activeWebUser = webUsers.get("Dana");
@@ -70,8 +72,8 @@ public class ShoppingSystem {
 
     public void removeWebUser(String id){
 
-
-        for(Order order : activeWebUser.getCustomer().getAccount().getOrders()){
+        WebUser toRemove = (WebUser)webUsers.get(id);
+        for(Order order : toRemove.getCustomer().getAccount().getOrders()){
 
             for (Payment payment : order.getPayments()){
                 objects.remove(payment.getObjectId());
@@ -83,25 +85,26 @@ public class ShoppingSystem {
             }
         }
 
-        for (Payment payment : activeWebUser.getCustomer().getAccount().getPayments()){
+        for (Payment payment : toRemove.getCustomer().getAccount().getPayments()){
             objects.remove(payment.getObjectId());
         }
 
 
-        objects.remove(activeWebUser.getCustomer().getAccount().getShoppingCart().getObjectId());
-        if(activeWebUser.getCustomer().getAccount() instanceof PremiumAccount){
-            for(Product product : ((PremiumAccount) activeWebUser.getCustomer().getAccount()).getProducts()){
+        objects.remove(toRemove.getCustomer().getAccount().getShoppingCart().getObjectId());
+        if(toRemove.getCustomer().getAccount() instanceof PremiumAccount){
+            for(Product product : ((PremiumAccount) toRemove.getCustomer().getAccount()).getProducts()){
                 product.setSeller(null);
             }
         }
-        objects.remove(activeWebUser.getCustomer().getAccount().getObjectId());
-        objects.remove(activeWebUser.getCustomer().getObjectId());
-        objects.remove(activeWebUser.getObjectId());
+        objects.remove(toRemove.getCustomer().getAccount().getObjectId());
+        objects.remove(toRemove.getCustomer().getObjectId());
+        objects.remove(toRemove.getObjectId());
         webUsers.remove(id);
 
-        if (activeWebUser.getLoginId().equals(id)){
+        if (activeWebUser!=null && activeWebUser.getLoginId().equals(id)){
             activeWebUser = null;
         }
+
     }
 
     public Boolean verifyLogin(String loginId, String password){
@@ -209,8 +212,9 @@ public class ShoppingSystem {
 
     public void showAllObjects(){
 
-        for (Object object: objects.values()) {
-            System.out.println(object.toString());
+        for (Integer objectId: objects.keySet()) {
+            String className = objects.get(objectId).getClass().getSimpleName();
+            System.out.println(className + " " + objectId);
         }
     }
 

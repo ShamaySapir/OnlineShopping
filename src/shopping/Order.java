@@ -139,9 +139,9 @@ public class Order {
                 ", ship_to=" + ship_to +
                 ", status=" + status +
                 ", total=" + total +
-                ", account=" + account +
-                ", lineItems=" + lineItems +
-                ", payments=" + payments +
+                //", account=" + account +
+                //", lineItems=" + lineItems +
+                //", payments=" + payments +
                 ", object_id=" + object_id +
                 '}';
     }

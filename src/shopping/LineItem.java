@@ -74,8 +74,8 @@ public class LineItem {
                 "quantity=" + quantity +
                 ", price=" + price +
                 ", product=" + product +
-                ", shoppingCart=" + shoppingCart +
-                ", order=" + order +
+                //", shoppingCart=" + shoppingCart +
+                //", order=" + order +
                 ", object_id=" + object_id +
                 '}';
     }

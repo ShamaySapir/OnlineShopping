@@ -27,8 +27,8 @@ public class ImmediatePayment extends Payment{
                 ", paid=" + paid +
                 ", total=" + total +
                 ", details='" + details + '\'' +
-                ", order=" + order +
-                ", account=" + account +
+                //", order=" + order +
+                //", account=" + account +
                 ", object_id=" + object_id +
                 '}';
     }

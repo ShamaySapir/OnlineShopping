@@ -1,6 +1,6 @@
 package shopping;
 
-public enum UserState {
+enum UserState {
 
     NEW,
     ACTIVE,
